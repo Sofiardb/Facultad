@@ -1,0 +1,10 @@
+FTP (File Transfer Protocol):
+Puerto 21: Es el puerto por defecto para la conexión de control en el FTP no cifrado.
+Puerto 990: Se utiliza para FTPS (FTP sobre SSL/TLS), donde se establece una conexión segura implícita desde el inicio. 
+SSH (Secure Shell):
+Puerto 22: Es el puerto estándar para SSH y SFTP (SSH File Transfer Protocol), que es una forma segura de transferir archivos. 
+Servicios de Mail (Correo electrónico):
+Puerto 25: Para el envío de correos (SMTP).
+Puerto 110: Para la recuperación de correos (POP3).
+Puerto 143: Para la gestión de correos (IMAP).
+Puerto 465 o 587: Se usan para el envío de correos cifrados (SMTPS). 

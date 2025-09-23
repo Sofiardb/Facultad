@@ -1,0 +1,5 @@
+[Microprogrammed Architecture Project]
+Microcode=tp1.mco
+InstructionMemory=tp1.cod
+DataMemory=tp1.dat
+MemoryAccessTime=4

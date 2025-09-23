@@ -1,0 +1,55 @@
+[General Options]
+AluDivAndMult=no
+CompleteComparatorSet=yes
+CompleteSignExtend=no
+CompleteMemoryOperations=yes
+DataMemorySize=1024
+CodeMemorySize=512
+
+[Instruction Encoding]
+NumberOfOpcodes=32
+NumberOfRegisters=8
+
+[Instructions]
+;Opcode  |Type|Mnemonic Representation
+NOP      | R  |
+ADD      | R  |r1, r2, r3
+SUB      | R  |r1, r2, r3
+SUBR     | R  |r1, r2, r3
+ADDI     | I  |r1, i, r2
+SUBI     | I  |r1, i, r2
+AND      | R  |r1, r2, r3
+OR       | R  |r1, r2, r3
+XOR      | R  |r1, r2, r3
+ANDI     | I  |r1, i, r2
+ORI      | I  |r1, i, r2
+LD       | I  |r1, (i)
+ST       | I  |r1, (i)
+BRNZ     | I  |r1, j
+GOTO     | J  |i
+SWAP     | I  |r1, r2
+MAYOR    | R  |r1, r2
+SETCONT  | I  |i
+DECCONT  | R  |
+BRNZCONT | J  |j
+
+[Microprogrammed Architecture]
+MicroCodeSize=64
+ConstantSize=16
+NumberOfJumpTables=3
+RRFormalA=1
+RRFormalB=2
+RAF=[]
+RBF=[]
+WF=[1,2,3]
+RAA=no
+RBA=no
+WA=no
+
+[Extra Registers]
+SWAPTMP
+CONT
+
+[Pipelined Architecture]
+BlindRegisterFileReading=yes
+OnlyStallWhenNecessary=yes

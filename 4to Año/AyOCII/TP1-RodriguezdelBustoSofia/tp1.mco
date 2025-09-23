@@ -1,0 +1,62 @@
+[Microcode]
+;uAR |Label |ALU   |S1    |S2    |Dest  |ExtIR |Const |JCond |Adr   |Mem   |MAdr  |MDest |Regs
+0000 |FETCH |      |      |      |      |      |      |Mbusy |FETCH |RW    |PC    |IR    |      
+0001 |      |ADD   |PC    |Const |PC    |      |4     |Jump1 |      |      |      |      |RR    
+0002 |NOP   |      |      |      |      |      |      |True  |FETCH |      |      |      |      
+0003 |WF3   |      |      |      |      |      |      |True  |FETCH |      |      |      |WF3   
+0004 |ADD   |ADD   |A     |B     |C     |      |      |True  |WF3   |      |      |      |      
+0005 |SUB   |SUB   |A     |B     |C     |      |      |True  |WF3   |      |      |      |      
+0006 |SUBR  |RSUB  |A     |B     |C     |      |      |True  |WF3   |      |      |      |      
+0007 |ADDI  |ADD   |A     |IR    |C     |Word  |      |      |      |      |      |      |      
+0008 |WF2   |      |      |      |      |      |      |True  |FETCH |      |      |      |WF2   
+0009 |SUBI  |SUB   |A     |IR    |C     |Word  |      |True  |WF2   |      |      |      |      
+000A |AND   |AND   |A     |B     |C     |      |      |True  |WF3   |      |      |      |      
+000B |OR    |OR    |A     |B     |C     |      |      |True  |WF3   |      |      |      |      
+000C |XOR   |XOR   |A     |B     |C     |      |      |True  |WF3   |      |      |      |      
+000D |ANDI  |AND   |A     |IR    |C     |Word  |      |True  |WF2   |      |      |      |      
+000E |ORI   |OR    |A     |IR    |C     |Word  |      |True  |WF2   |      |      |      |      
+000F |LD    |S1    |IR    |      |MAR   |Word  |      |      |      |      |      |      |      
+0010 |LD1   |      |      |      |      |      |      |Mbusy |LD1   |RW    |MAR   |MDR   |      
+0011 |      |S1    |MDR   |      |C     |      |      |      |      |      |      |      |      
+0012 |WF1   |      |      |      |      |      |      |True  |WF1   |      |      |      |WF1   
+0013 |ST    |S1    |A     |      |MDR   |      |      |      |      |      |      |      |      
+0014 |      |S1    |IR    |      |MAR   |Word  |      |      |      |      |      |      |      
+0015 |ST1   |      |      |      |      |      |      |Mbusy |ST1   |WW    |MAR   |MDR   |      
+0016 |      |      |      |      |      |      |      |True  |FETCH |      |      |      |      
+0017 |SWAP  |S1    |A     |      |SWAPTMP|      |      |      |      |      |      |      |      
+0018 |      |S2    |      |B     |C     |      |      |      |      |      |      |      |      
+0019 |      |S1    |SWAPTMP|      |C     |      |      |True  |WF2   |      |      |      |WF1   
+001A |BRNZ  |S1    |A     |      |      |      |      |EQ    |FETCH |      |      |      |      
+001B |      |ADD   |IR    |PC    |PC    |Word  |      |True  |FETCH |      |      |      |      
+001C |GOTO  |S1    |IR    |      |PC    |Word  |      |True  |FETCH |      |      |      |      
+001D |MAYOR |SUB   |A     |B     |      |      |      |GT    |SWAP  |      |      |      |      
+001E |      |      |      |      |      |      |      |True  |FETCH |      |      |      |      
+001F |SETCONT|S1    |IR    |      |CONT  |Word  |      |True  |FETCH |      |      |      |      
+0020 |DECCONT|SUB   |CONT  |Const |CONT  |      |1     |True  |FETCH |      |      |      |      
+0021 |BRNZCONT|S1    |CONT  |      |      |      |      |EQ    |FETCH |      |      |      |      
+0022 |      |ADD   |IR    |PC    |PC    |Word  |      |True  |FETCH |      |      |      |      
+
+[Jump Tables]
+;Opcode  |Jump Table 1 |Jump Table 2 |Jump Table 3 
+NOP      |NOP          |             |             
+ADD      |ADD          |             |             
+SUB      |SUB          |             |             
+SUBR     |SUBR         |             |             
+ADDI     |ADDI         |             |             
+SUBI     |SUBI         |             |             
+AND      |AND          |             |             
+OR       |OR           |             |             
+XOR      |XOR          |             |             
+ANDI     |ANDI         |             |             
+ORI      |ORI          |             |             
+LD       |LD           |             |             
+ST       |ST           |             |             
+BRNZ     |BRNZ         |             |             
+GOTO     |GOTO         |             |             
+SWAP     |SWAP         |             |             
+MAYOR    |MAYOR        |             |             
+SETCONT  |SETCONT      |             |             
+DECCONT  |DECCONT      |             |             
+BRNZCONT |BRNZCONT     |             |             
+BRCONT   |             |             |             
+
