@@ -1,0 +1,54 @@
+[General Options]
+AluDivAndMult=yes
+CompleteComparatorSet=yes
+CompleteSignExtend=no
+CompleteMemoryOperations=yes
+DataMemorySize=1024
+CodeMemorySize=512
+
+[Instruction Encoding]
+NumberOfOpcodes=32
+NumberOfRegisters=8
+
+[Instructions]
+;Opcode  |Type|Mnemonic Representation
+NOP      | R  |
+BIPUSH   | J  |i
+POP      | J  |
+DUP      | J  |
+IADD     | J  |
+ISUB     | J  |
+IAND     | J  |
+IOR      | J  |
+IFEQ     | J  |j
+IFLT     | J  |j
+ILOAD    | J  |i
+ISTORE   | J  |i
+GOTO     | J  |j
+SETCCP   | J  |(i)
+SETSP    | J  |(i)
+SETLV    | J  |(i)
+LV       | J  |i
+
+[Microprogrammed Architecture]
+MicroCodeSize=128
+ConstantSize=16
+NumberOfJumpTables=3
+RRFormalA=1
+RRFormalB=2
+RAF=[]
+RBF=[]
+WF=[1,2,3]
+RAA=no
+RBA=no
+WA=no
+
+[Extra Registers]
+CPP
+SP
+LV
+TOS
+
+[Pipelined Architecture]
+BlindRegisterFileReading=yes
+OnlyStallWhenNecessary=yes

@@ -1,0 +1,5 @@
+[Microprogrammed Architecture Project]
+Microcode=tp3.mco
+InstructionMemory=tp3.cod
+DataMemory=tp3.dat
+MemoryAccessTime=4

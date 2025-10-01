@@ -1,0 +1,101 @@
+[Microcode]
+;uAR |Label |ALU   |S1    |S2    |Dest  |ExtIR |Const |JCond |Adr   |Mem   |MAdr  |MDest |Regs
+0000 |FETCH |      |      |      |      |      |      |Mbusy |FETCH |RW    |PC    |IR    |      
+0001 |      |ADD   |PC    |Const |PC    |      |4     |Jump1 |      |      |      |      |RR    
+0002 |NOP   |      |      |      |      |      |      |True  |FETCH |      |      |      |      
+0003 |SETCCP|S1    |IR    |      |CPP   |Word  |      |True  |FETCH |      |      |      |      
+0004 |SETSP |S1    |IR    |      |SP    |Word  |      |True  |FETCH |      |      |      |      
+0005 |SETLV |S1    |IR    |      |LV    |Word  |      |True  |FETCH |      |      |      |      
+0006 |BIPUSH|ADD   |SP    |Const |SP    |      |4     |      |      |      |      |      |      
+0007 |      |S1    |SP    |      |MAR   |      |      |      |      |      |      |      |      
+0008 |      |S1    |IR    |      |MDR   |Word  |      |      |      |      |      |      |      
+0009 |WBIP  |      |      |      |      |      |      |Mbusy |WBIP  |WW    |MAR   |MDR   |      
+000A |      |S1    |MDR   |      |TOS   |      |      |True  |FETCH |      |      |      |      
+000B |POP   |SUB   |SP    |Const |SP    |      |4     |      |      |      |      |      |      
+000C |      |S1    |SP    |      |MAR   |      |      |      |      |      |      |      |      
+000D |READPOP|      |      |      |      |      |      |Mbusy |READPOP|RW    |MAR   |MDR   |      
+000E |      |S1    |MDR   |      |TOS   |      |      |True  |FETCH |      |      |      |      
+000F |DUP   |ADD   |SP    |Const |SP    |      |4     |      |      |      |      |      |      
+0010 |      |S1    |SP    |      |MAR   |      |      |      |      |      |      |      |      
+0011 |      |S1    |TOS   |      |MDR   |      |      |      |      |      |      |      |      
+0012 |WDUP  |      |      |      |      |      |      |Mbusy |WDUP  |WW    |MAR   |MDR   |      
+0013 |      |      |      |      |      |      |      |True  |FETCH |      |      |      |      
+0014 |IADD  |SUB   |SP    |Const |SP    |      |4     |      |      |      |      |      |      
+0015 |      |S1    |SP    |      |MAR   |      |      |      |      |      |      |      |      
+0016 |RIADD |      |      |      |      |      |      |Mbusy |RIADD |RW    |MAR   |MDR   |      
+0017 |      |ADD   |TOS   |MDR   |MDR   |      |      |      |      |      |      |      |      
+0018 |WIADD |      |      |      |      |      |      |Mbusy |WIADD |WW    |MAR   |MDR   |      
+0019 |      |S1    |MDR   |      |TOS   |      |      |True  |FETCH |      |      |      |      
+001A |ISUB  |SUB   |SP    |Const |SP    |      |4     |      |      |      |      |      |      
+001B |      |S1    |SP    |      |MAR   |      |      |      |      |      |      |      |      
+001C |RISUB |      |      |      |      |      |      |Mbusy |RISUB |RW    |MAR   |MDR   |      
+001D |      |SUB   |TOS   |MDR   |MDR   |      |      |      |      |      |      |      |      
+001E |WISUB |      |      |      |      |      |      |Mbusy |WISUB |WW    |MAR   |MDR   |      
+001F |      |S1    |MDR   |      |TOS   |      |      |True  |FETCH |      |      |      |      
+0020 |IAND  |SUB   |SP    |Const |SP    |      |4     |      |      |      |      |      |      
+0021 |      |S1    |SP    |      |MAR   |      |      |      |      |      |      |      |      
+0022 |RIAND |      |      |      |      |      |      |Mbusy |RIAND |RW    |MAR   |MDR   |      
+0023 |      |AND   |TOS   |MDR   |MDR   |      |      |      |      |      |      |      |      
+0024 |WIAND |      |      |      |      |      |      |Mbusy |WIAND |WW    |MAR   |MDR   |      
+0025 |      |S1    |MDR   |      |TOS   |      |      |True  |FETCH |      |      |      |      
+0026 |IOR   |SUB   |SP    |Const |SP    |      |4     |      |      |      |      |      |      
+0027 |      |S1    |SP    |      |MAR   |      |      |      |      |      |      |      |      
+0028 |RIOR  |      |      |      |      |      |      |Mbusy |RIOR  |RW    |MAR   |MDR   |      
+0029 |      |OR    |TOS   |MDR   |MDR   |      |      |      |      |      |      |      |      
+002A |WIOR  |      |      |      |      |      |      |Mbusy |WIOR  |WW    |MAR   |MDR   |      
+002B |      |S1    |MDR   |      |TOS   |      |      |True  |FETCH |      |      |      |      
+002C |IFEQ  |SUB   |SP    |Const |SP    |      |4     |      |      |      |      |      |      
+002D |      |S1    |SP    |      |MAR   |      |      |      |      |      |      |      |      
+002E |RIFEQ |      |      |      |      |      |      |Mbusy |RIFEQ |RW    |MAR   |MDR   |      
+002F |      |S1    |TOS   |      |      |      |      |NE    |IFEQ1 |      |      |      |      
+0030 |      |S1    |MDR   |      |TOS   |      |      |      |      |      |      |      |      
+0031 |      |ADD   |PC    |IR    |PC    |Word  |      |True  |FETCH |      |      |      |      
+0032 |IFEQ1 |S1    |MDR   |      |TOS   |      |      |True  |FETCH |      |      |      |      
+0033 |IFLT  |SUB   |SP    |Const |SP    |      |4     |      |      |      |      |      |      
+0034 |      |S1    |SP    |      |MAR   |      |      |      |      |      |      |      |      
+0035 |RIFLT |      |      |      |      |      |      |Mbusy |RIFLT |RW    |MAR   |MDR   |      
+0036 |      |S1    |TOS   |      |      |      |      |GE    |IFLT1 |      |      |      |      
+0037 |      |S1    |MDR   |      |TOS   |      |      |      |      |      |      |      |      
+0038 |      |ADD   |PC    |IR    |PC    |Word  |      |True  |FETCH |      |      |      |      
+0039 |IFLT1 |S1    |MDR   |      |TOS   |      |      |True  |FETCH |      |      |      |      
+003A |GOTO  |ADD   |PC    |IR    |PC    |Word  |      |True  |FETCH |      |      |      |      
+003B |LV    |ADD   |SP    |Const |SP    |      |4     |      |      |      |      |      |      
+003C |      |S1    |SP    |      |MAR   |      |      |      |      |      |      |      |      
+003D |      |S1    |IR    |      |MDR   |Word  |      |      |      |      |      |      |      
+003E |WLV   |      |      |      |      |      |      |Mbusy |WLV   |WW    |MAR   |MDR   |      
+003F |      |      |      |      |      |      |      |True  |FETCH |      |      |      |      
+0040 |ILOAD |SUB   |IR    |Const |MAR   |Word  |1     |      |      |      |      |      |      
+0041 |      |MUL   |MAR   |Const |MAR   |      |4     |      |      |      |      |      |      
+0042 |      |ADD   |MAR   |LV    |MAR   |      |      |      |      |      |      |      |      
+0043 |RLOAD |      |      |      |      |      |      |Mbusy |RLOAD |RW    |MAR   |MDR   |      
+0044 |      |ADD   |SP    |Const |SP    |      |4     |      |      |      |      |      |      
+0045 |      |S1    |SP    |      |MAR   |      |      |      |      |      |      |      |      
+0046 |WLOAD |      |      |      |      |      |      |Mbusy |WLOAD |WW    |MAR   |MDR   |      
+0047 |      |S1    |MDR   |      |TOS   |      |      |True  |FETCH |      |      |      |      
+0048 |ISTORE|S1    |TOS   |      |MDR   |      |      |      |      |      |      |      |      
+0049 |      |SUB   |IR    |Const |MAR   |Word  |1     |      |      |      |      |      |      
+004A |      |MUL   |MAR   |Const |MAR   |      |4     |      |      |      |      |      |      
+004B |      |ADD   |MAR   |LV    |MAR   |      |      |      |      |      |      |      |      
+004C |WSTORE|      |      |      |      |      |      |Mbusy |WSTORE|WW    |MAR   |MDR   |      
+004D |      |      |      |      |      |      |      |True  |POP   |      |      |      |      
+
+[Jump Tables]
+;Opcode  |Jump Table 1 |Jump Table 2 |Jump Table 3 
+NOP      |NOP          |             |             
+BIPUSH   |BIPUSH       |             |             
+POP      |POP          |             |             
+DUP      |DUP          |             |             
+IADD     |IADD         |             |             
+ISUB     |ISUB         |             |             
+IAND     |IAND         |             |             
+IOR      |IOR          |             |             
+IFEQ     |IFEQ         |             |             
+IFLT     |IFLT         |             |             
+ILOAD    |ILOAD        |             |             
+ISTORE   |ISTORE       |             |             
+GOTO     |GOTO         |             |             
+SETCCP   |SETCCP       |             |             
+SETSP    |SETSP        |             |             
+SETLV    |SETLV        |             |             
+LV       |LV           |             |             
+
